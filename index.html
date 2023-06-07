@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <script src="music-list.js"></script>
+</head>
+<body>
+
+    <div class="loader">
+        <div class="loading"></div>
+        <i class="material-icons">music_note</i>
+
+        <div class="suggestion">
+            <span class="material-icons">headphones</span>
+            <p>HeadPhones Recommanded</p>   
+        </div>
+    </div>
+
+    <div class="bgblur">
+        <img src="">
+    </div>
+    
+    <div class="wrapper">
+        <div class="top-bar">
+            <!-- <i class="material-icons">music_note</i> -->
+            <!-- <i class="material-icons">expand_more</i> -->
+            <span>Music Player</span>
+            <i onclick="openMenu()" class="material-icons">settings</i>
+
+            <div class="menu">
+                <i onclick="openMenu()" class="material-icons">close</i>
+                <button class="dark">Dark Mode</button>
+                <span><a href="http://muz4mmil.github.io"> - Made by Muzammil</a></span>
+            </div>
+
+        </div>
+        <div class="img-area">
+            <img src="">
+        </div>
+        <div class="song-details">
+            <p class="name" id="name"></p>
+            <p class="artist" id="artist"></p>
+        </div>
+
+        <div class="progress-area">
+            <div class="progress-bar" >
+                <span></span>
+            </div>
+            <div class="timer">
+                <span class="current">0:00</span>
+                <span class="duration">0:00</span>
+            </div>
+            <audio src="" id="main-audio"></audio>
+        </div>
+
+        <div class="controls">
+            <i id="repeat-plist" class="material-icons">repeat</i>
+            <i id="prev" class="material-icons" onclick="prevSong()">skip_previous</i>
+            <div class="play-pause" id="play-pause">
+                <i class="material-icons">play_arrow</i>
+            </div>
+            <i id="next" class="material-icons" onclick="nextSong()">skip_next</i>
+            <i id="more-music" class="material-icons">queue_music</i>
+        </div>
+
+        <div class="music-list">
+            <div class="header">
+                <div class="row">
+                    <i class="material-icons">queue_music</i>
+                </div>
+                <i id="close" class="material-icons">close</i>
+            </div>
+            <div class="playlist-title">Playlist</div>
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>

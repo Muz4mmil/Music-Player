@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.loader{
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background: white;
+    align-items: center;
+    justify-content: center;
+    transition: 1s;
+}
+
+
+.loader i{
+    position: absolute;
+    font-size: 50px;
+}
+
+.loading{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid rgb(255, 123, 145);
+    box-shadow: 0px 0px 50px 50px pink;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+.suggestion{
+    flex: 0;
+    display: flex;
+    position: absolute;
+    top: 80%;
+    opacity: 0.6;
+}
+.suggestion p{
+    font-size: 16px;
+}
+.suggestion span{
+    font-size: 25px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+@keyframes hide {
+    0%{ opacity: 1;}
+    100%{opacity: 0;}
+}
+
+:root{
+    --font1 : black;
+    --font2 : rgb(34, 34, 34);
+    --listbgr : white;
+    --bgr : rgba(255, 255, 255, 0.75);
+    --playing : rgb(156, 30, 156);
+    --shadow : 0 6px 12px rgba(0, 0, 0, 0.747);
+    --DLText : "Dark Mode";
+    --filter : blur(25px);
+}
+
+.darkMode{
+    --font1 : white;
+    --font2 : rgb(219, 219, 219);
+    --bgr : rgba(0, 0, 0, 0.5);
+    --listbgr : rgb(20, 20, 20);
+    --playing : rgb(235, 118, 235);
+    --shadow : 0 6px 12px rgb(0, 0, 0);
+    --DLText : "Light Mode";
+    --filter : blur(25px) brightness(30%);
+}
+
+
+.bgblur{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    height: 110%;
+    width: 110%;
+    filter: var(--filter);
+}
+.bgblur img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.wrapper{
+    width: 380px;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 25px 30px;
+    background-color: var(--bgr);
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: all .5s ease;
+}
+
+.wrapper i{
+    cursor: pointer;
+    color: var(--font1);
+}
+
+.top-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-bar i{
+    font-size: 26px;
+    color: var(--font2);
+    /* height: 32px; */
+}
+
+.top-bar i:nth-child(1){
+    cursor: default;
+}
+
+.top-bar > span{
+    font-size: 22px;
+    color: var(--font2);
+    font-weight: 700;
+    pointer-events: none;
+}
+
+.menu span a{
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--font1);
+}
+
+.img-area{
+    height: 250px;
+    width: 250px;
+    margin: 25px auto;
+    /* margin-top: 25px; */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    filter: inherit;
+    border-radius: 14px;
+}
+
+.img-area img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.song-details{
+    /* text-align: center; */
+    margin: 30px 0;
+    color: var(--font2);
+}
+
+.song-details .name{
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.song-details .artist{
+    opacity: 0.9;
+    font-size: 18px;
+    margin-top: 0px;
+}
+
+.progress-area{
+    height: 6px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 50px;
+    cursor: pointer;
+    filter: inherit;
+}
+
+.progress-area .progress-bar{
+    height: inherit;
+    width: 0;
+    position: relative;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #36bbdc 0%, #1c4aaf 100%);
+    /* background: blue; */
+}
+
+.progress-bar::before{
+    content: '';
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    background: black;
+    border-radius: inherit;
+    top: 50%;
+    right: -5px;
+    transform: translateY(-50%);
+    background: inherit;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.progress-area:hover .progress-bar::before{
+    opacity: 1;
+}
+
+.progress-area .timer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+}
+
+.timer span{
+    font-size: 13px;
+    color: var(--font2);
+}
+
+.controls{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 30px 0 5px 0;
+    filter: inherit;
+    padding: 10px 0;
+    border-radius: 16px;
+    background: var(--bgr);
+}
+
+.controls i{
+    font-size: 28px;
+    user-select: none;
+    background: linear-gradient(90deg, #0095ff 0%, #0058cd 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.controls i:nth-child(2),
+.controls i:nth-child(4){
+    font-size: 43px;
+}
+
+.controls #prev{
+    margin-right: -13px;
+}
+.controls #next{
+    margin-left: -13px;
+}
+.controls .play-pause{
+    height: 54px;
+    width: 54px;
+    background: linear-gradient(90deg, #0095ff 0%, #0058cd 100%);
+    /* background: var(--listbgr); */
+    /* box-shadow: 0px 5px 5px rgba(203, 255, 235, 0.575); */
+    border-radius: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-pause::before{
+    content: "";
+    position: absolute;
+    height: 52px;
+    width: 52px;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #0095ff 0%, #0058cd 100%);
+}
+
+.play-pause i{
+    height: 52px;
+    width: 52px;
+    line-height: 52px;
+    text-align: center;
+    border-radius: inherit;
+    background: white;
+    /* background: inherit; */
+    position: relative;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 40px;
+}
+
+.music-list{
+    position: absolute;
+    top: 0;
+    right: -100%;
+    /* bottom: -55%; */
+    opacity: 1;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, .1);
+    background: var(--listbgr);
+    transition: all 0.2s ease-out;
+    color: var(--font1);
+}
+
+.music-list.show{
+    right: 0;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.music-list .header, .music-list li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.music-list .header .row{
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--font2);
+}
+
+.header .row i{
+    cursor: default;
+    
+}
+
+.header .row span{
+    margin-left: 5px;
+}
+
+.header #close{
+    font-size: 22px;
+    color: var(--font2);
+}
+
+.music-list ul{
+    margin: 10px 0;
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.music-list ul::-webkit-scrollbar{
+    width: 0;
+}
+
+.row{
+    display: flex;
+}
+
+.music-list ul li{
+    cursor: pointer;
+    list-style: none;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #d5d5d5;
+    font-weight: 500;
+}
+
+.music-list ul li:last-child{
+    border-bottom: 0px;
+}
+
+.music-list .playlist-title{
+    font-size: 32px;
+    font-weight: bold;
+    padding: 20px 0;
+}
+
+ul li .row p{
+    opacity: 0.7;
+}
+
+ul li img{
+    height: 40px;
+    width: 40px;
+    margin-right: 12px;
+    border-radius: 10px;
+}
+
+ul li.equalizer{
+    color: var(--playing);
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: auto;
+    height: auto;
+    opacity: 0;
+    background: var(--listbgr);
+    box-shadow: var(--shadow);
+    top: 20px;
+    right: 20px;
+    padding: 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    z-index: -2;
+}
+
+.menu i{
+    font-size: 20px;
+    width: 100%;
+    text-align: right;
+}
+
+.menu button{
+    outline: none;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    text-align: start;
+    color: var(--font1);
+    cursor: pointer;
+}
+
+.menu span{
+    font-size: 13px;
+    margin-top: 10px;
+    opacity: 0.5;
+    text-align: right;
+}
+
+.menu.show{
+    height: auto;
+    width: auto;
+    padding: 20px;
+    top: 20px;
+    right: 20px;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
